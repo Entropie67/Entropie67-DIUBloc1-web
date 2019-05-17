@@ -1,7 +1,7 @@
-var centerLng = 38.42293213401053;
-var centerLat = 27.14404106140137;
+var centerLng = 48.581556;
+var centerLat = 7.750157;
 
-var map = L.map('map').setView([centerLng,centerLat], 14);
+var map = L.map('map').setView([centerLng,centerLat], 17);
 var buffer = 0.04;
 var collection = [];
 var geojsonlist = [];
@@ -11,17 +11,41 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 var nodes = {
-    "A":{coord:[38.42216,27.13199]},
-    "B":{coord:[38.42412,27.13854]},
-    "C":{coord:[38.41785,27.14395]},
-    "D":{coord:[38.42118,27.14511]},
-    "E":{coord:[38.42047,27.15631]},
-    "F":{coord:[38.42451,27.14790]}
+    "A":{coord:[48.583425,7.747944]},
+    "B":{coord:[48.579613, 7.750659]},
+    "C":{coord:[48.581556,7.750157]},
+    "D":{coord:[48.581862, 7.746134]},
+    "E":{coord:[48.582636, 7.748080]},
+    "F":{coord:[48.580843, 7.753084]}
 };
 
-var geojson = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":663,"adi":"İsimsiz Polyline","fid":"0","uzunluk":"0"},"geometry":{"type":"LineString","coordinates":[[27.131992578506473,38.42216723394987],[27.13854789733887,38.424125698143435]]}},{"type":"Feature","properties":{"id":749,"adi":"İsimsiz Polyline","fid":"0","uzunluk":"0"},"geometry":{"type":"LineString","coordinates":[[27.13854789733887,38.424125698143435],[27.147903442382816,38.424512341449876]]}},{"type":"Feature","properties":{"id":765,"adi":"İsimsiz Polyline","fid":"0","uzunluk":"0"},"geometry":{"type":"LineString","coordinates":[[27.147903442382816,38.424512341449876],[27.156314849853516,38.42047770071574]]}},{"type":"Feature","properties":{"id":781,"adi":"İsimsiz Polyline","fid":"0","uzunluk":"0"},"geometry":{"type":"LineString","coordinates":[[27.131992578506473,38.42216723394987],[27.143955230712894,38.417855063388195]]}},{"type":"Feature","properties":{"id":797,"adi":"İsimsiz Polyline","fid":"0","uzunluk":"0"},"geometry":{"type":"LineString","coordinates":[[27.143955230712894,38.417855063388195],[27.156314849853516,38.42047770071574]]}},{"type":"Feature","properties":{"id":813,"adi":"İsimsiz Polyline","fid":"0","uzunluk":"0"},"geometry":{"type":"LineString","coordinates":[[27.13854789733887,38.424125698143435],[27.145113945007328,38.421183779112695]]}},{"type":"Feature","properties":{"id":829,"adi":"İsimsiz Polyline","fid":"0","uzunluk":"0"},"geometry":{"type":"LineString","coordinates":[[27.145113945007328,38.421183779112695],[27.147903442382816,38.424512341449876]]}},{"type":"Feature","properties":{"id":845,"adi":"İsimsiz Polyline","fid":"0","uzunluk":"0"},"geometry":{"type":"LineString","coordinates":[[27.145113945007328,38.421183779112695],[27.156314849853516,38.42047770071574]]}}]};
+// Les arrêtes du graph
+var geojson = {"type":"FeatureCollection",
+    "features": [
+        {"type":"Feature",
+            "properties":{
+                "id":663,
+                "longueur":"0"},
+            "geometry":{
+                "type":"LineString",
+                "coordinates":[[7.747944,48.583425],[7.750157,48.581556]]}},
+        {"type":"Feature","properties":{"id":749,"longueur":"0"},
+                "geometry":{"type":"LineString","coordinates":[[7.750157,48.581556],
+                        [7.750659,48.579613]]}},{"type":"Feature","properties":{"id":765,"longueur":"0"},
+            "geometry":{"type":"LineString","coordinates":[[7.753084,48.580843],[7.748080,48.582636]]}},
+        {"type":"Feature","properties":{"id":781,"longueur":"0"},
+                "geometry":{"type":"LineString","coordinates":[[7.748080,48.581862],
+                        [7.750157,48.581556]]}},{"type":"Feature","properties":{"id":797,"longueur":"0"},
+            "geometry":{"type":"LineString","coordinates":[[7.750659,48.579613],[7.747944,48.583425]]}},
+        {"type":"Feature","properties":{"id":813,"longueur":"0"},"geometry":{"type":"LineString",
+                    "coordinates":[[7.753084,48.580843],[7.747944,48.583425]]}},
+        {"type":"Feature","properties":{"id":829,"longueur":"0"},
+                "geometry":{"type":"LineString","coordinates":[[7.747944,48.583425],
+                        [7.753084,48.580843]]}},{"type":"Feature",
+            "properties":{"id":845,"longueur":"0"},
+            "geometry":{"type":"LineString","coordinates":[[7.747944,48.583425],[7.753084,48.580843]]}}]};
 
-L.geoJSON(geojson, {style: {color:"#ff0000"}}).addTo(map);
+L.geoJSON(geojson, {style: {color:"#ff0000"}}).addTo(map);  // tracé des lignes entre les noeuds
 
 function showNodes(nodes){
     for(var a in nodes){
